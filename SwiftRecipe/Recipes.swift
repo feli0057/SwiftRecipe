@@ -15,11 +15,11 @@ struct Recipe: Identifiable, Hashable {
     let logo: String
     let overview: String
     let servings: String
-    let cookingTime: String
+    let cookTime: String
     let ingredients: [String]
     let instructions: String
 
-    init(id: UUID = UUID(), name: String, description: String, image: String, logo: String, overview: String, servings: String, cookingTime: String, ingredients: [String], instructions: String) {
+    init(id: UUID = UUID(), name: String, description: String, image: String, logo: String, overview: String, servings: String, cookTime: String, ingredients: [String], instructions: String) {
         self.id = id
         self.name = name
         self.description = description
@@ -27,7 +27,7 @@ struct Recipe: Identifiable, Hashable {
         self.logo = logo
         self.overview = overview
         self.servings = servings
-        self.cookingTime = cookingTime
+        self.cookTime = cookTime
         self.ingredients = ingredients
         self.instructions = instructions
     }
@@ -40,20 +40,20 @@ class RecipeList: ObservableObject {
             description: "Sour, spicy, and sizzling chopped pork. A Filipino classic, perfect with drinks.",
             image: "sisig",
             logo: "sisig-logo",
-            overview: "",
-            servings: "",
-            cookingTime: "",
+            overview: "Sizzling pork sisig is a Filipino dish made with chopped grilled pork, onions, and chili, all served on a hot plate. It’s crispy, savory, and usually topped with an egg and a squeeze of calamansi. Perfect as a meal or a bar snack!",
+            servings: "2 to 4",
+            cookTime: "1.5 hours",
             ingredients: [],
             instructions: ""),
 
         Recipe(
             name: "Lechon Kawali",
-            description: "Crucnhy, juicy, deep-fried pork belly dipped in spicy vinegar or liver sauce.",
+            description: "Crucnhy, juicy, deep-fried pork belly dipped in spicy vinegar or lechon sauce.",
             image: "lechonkawali",
             logo: "lechonkawali-logo",
-            overview: "",
-            servings: "",
-            cookingTime: "",
+            overview: "Lechon kawali is a Filipino favorite made with pork belly that's boiled, seasoned, and deep-fried until super crispy. Golden on the outside and tender inside, this hearty dish is best served with soy-vinegar dipping sauce or lechon gravy.",
+            servings: "4 to 8",
+            cookTime: "2 hours",
             ingredients: [],
             instructions: ""),
     ]
