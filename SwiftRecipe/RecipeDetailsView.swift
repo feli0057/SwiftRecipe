@@ -32,10 +32,10 @@ struct RecipeDetailsView: View {
                 if selectedTab == "Overview" {
                     VStack(alignment: .leading) {
                         Text(recipe.overview)
-                        
+
                         Divider().padding(.vertical, 8)
-                        
-                        HStack (alignment: .center, spacing: 16) {
+
+                        HStack(alignment: .center, spacing: 16) {
                             Spacer()
                             VStack {
                                 Text("Serves")
@@ -54,15 +54,21 @@ struct RecipeDetailsView: View {
                             }
                             Spacer()
                         }
-    
+
                         Divider().padding(.vertical, 8)
-                        
+
                         Text("Ingredients")
                             .font(.title2)
                             .fontWeight(.bold)
-                        
-                        ForEach(recipe.ingredients, id: \.self) { ingredient in
-                            Text("- \(ingredient)")
+                            .padding(.bottom, 8)
+
+                        VStack(alignment: .leading, spacing: 8) {
+                            ForEach(recipe.ingredients, id: \.self) { ingredient in
+                                HStack(alignment: .center, spacing: 16) {
+                                    Image(systemName: "checkmark.circle.fill")
+                                    Text("\(ingredient)")
+                                }
+                            }
                         }
                     }
                     .padding(.horizontal, 16)
@@ -84,6 +90,6 @@ struct RecipeDetailsView: View {
         overview: "Sizzling pork sisig is a Filipino dish made with chopped grilled pork, onions, and chili, all served on a hot plate. It’s crispy, savory, and usually topped with an egg and a squeeze of calamansi. Perfect as a meal or a bar snack!",
         servings: "2 to 4",
         cookTime: "1.5 hours",
-        ingredients: [],
+        ingredients: ["asfdg", "asfaf", "asfag"],
         instructions: ""))
 }

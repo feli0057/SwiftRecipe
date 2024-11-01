@@ -43,18 +43,39 @@ class RecipeList: ObservableObject {
             overview: "Sizzling pork sisig is a Filipino dish made with chopped grilled pork, onions, and chili, all served on a hot plate. It’s crispy, savory, and usually topped with an egg and a squeeze of calamansi. Perfect as a meal or a bar snack!",
             servings: "2 to 4",
             cookTime: "1.5 hours",
-            ingredients: [],
+            ingredients: [
+                "2 pounds pig face (snouts, ears, and jowls)",
+                "1 cup vinegar",
+                "¼ cup soy sauce",
+                "1 head garlic, peeled and crushed",
+                "1 teaspoon whole peppercorns",
+                "2 bay leaves",
+                "1 tablespoon salt",
+                "1 large onion, peeled and diced",
+                "6 Thai chili peppers, stemmed and minced",
+                "½ cup calamansi juice",
+                "1 tablespoon Maggi Liquid seasoning",
+                "½ cup liver spread",
+            ],
             instructions: ""),
 
         Recipe(
             name: "Lechon Kawali",
-            description: "Crucnhy, juicy, deep-fried pork belly dipped in spicy vinegar or lechon sauce.",
+            description: "Crunchy, juicy, fried pork belly dipped in spiced vinegar or lechon sauce.",
             image: "lechonkawali",
             logo: "lechonkawali-logo",
             overview: "Lechon kawali is a Filipino favorite made with pork belly that's boiled, seasoned, and deep-fried until super crispy. Golden on the outside and tender inside, this hearty dish is best served with soy-vinegar dipping sauce or lechon gravy.",
             servings: "4 to 8",
             cookTime: "2 hours",
-            ingredients: [],
+            ingredients: [
+                "4 pounds whole pork belly",
+                "1 head garlic, pounded",
+                "2 tablespoons salt",
+                "1 tablespoon peppercorns",
+                "2 bay leaves",
+                "water",
+                "canola oil",
+            ],
             instructions: ""),
     ]
 
@@ -62,7 +83,6 @@ class RecipeList: ObservableObject {
         AllRecipes.append(recipe)
     }
 
-    
     func deleteRecipe(_ recipe: Recipe) {
         AllRecipes.removeAll(where: { $0.name == recipe.name })
     }
