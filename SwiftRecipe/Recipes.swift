@@ -17,9 +17,9 @@ struct Recipe: Identifiable, Hashable {
     let servings: String
     let cookTime: String
     let ingredients: [String]
-    let instructions: String
+    let instructions: [String]
 
-    init(id: UUID = UUID(), name: String, description: String, image: String, logo: String, overview: String, servings: String, cookTime: String, ingredients: [String], instructions: String) {
+    init(id: UUID = UUID(), name: String, description: String, image: String, logo: String, overview: String, servings: String, cookTime: String, ingredients: [String], instructions: [String]) {
         self.id = id
         self.name = name
         self.description = description
@@ -56,8 +56,17 @@ class RecipeList: ObservableObject {
                 "½ cup calamansi juice",
                 "1 tablespoon Maggi Liquid seasoning",
                 "½ cup liver spread",
+                "fresh eggs, for serving",
             ],
-            instructions: ""),
+            instructions: [
+                "1. In a large pot, combine pig face, vinegar, soy sauce, garlic, peppercorns, bay leaves, about 1 tablespoon salt, and enough water to completely cover pork.",
+                "2. Bring to a boil, skimming scum that floats on top. Lower heat, cover, and simmer for about 50 minutes to 1 hour or until meat is tender. Remove from heat and drain well, discarding liquid.",
+                "3. Over a hot grill, grill pork for about 7 to 10 minutes on each side or until crisp and slightly charred. Or arrange in a single layer on a baking sheet and broil in a 450 F oven for about 4 to 5 minutes or until nicely charred.",
+                "4. Remove from heat, allow to cool to the touch, the finely chop the meat.",
+                "5. In a large bowl, combine chopped meat, onions, chili peppers, calamansi juice, liquid seasoning, and liver spread and gently stir to combine.",
+                "6. Season with salt and pepper to taste.",
+                "7. Transfer to a hot sizzling plate, crack an egg on top, and serve.",
+            ]),
 
         Recipe(
             name: "Lechon Kawali",
@@ -76,7 +85,19 @@ class RecipeList: ObservableObject {
                 "water",
                 "canola oil",
             ],
-            instructions: ""),
+            instructions: [
+                "1. In a deep pot over medium heat, combine pork belly, garlic, salt, peppercorns, bay leaves, and enough water to cover the pork.",
+                "2. Bring to a boil, skimming scum that floats on top. Lower the heat, cover, and continue to cook for about 1 to 1 ½ hours or until meat is fork-tender but not falling apart.",
+                "3. Strain the pork, discarding the liquid. Wipe the pork dry, removing any stray aromatics.",
+                "4. Allow pork to cool to the touch and pat dry with paper towels. Score the skin using the tines of a fork.",
+                "5. Brush the pork skin with vinegar.",
+                "6. Season the pork all over with salt and layer the skin with a thin film of salt.",
+                "7. Place pork on a wire rack and refrigerate overnight to completely cool and dry. Remove from refrigerator and scrape off the salt.",
+                "8. In a deep, heavy-bottomed pot, heat enough oil to completely cover meat to about 350 F to 375 F.",
+                "9. Carefully place the meat in the hot oil and fry, turning as needed until golden and the skin is crisp and puffed.",
+                "10. Remove pork from the pot and drain on a wire rack set over a baking sheet. Let rest for about 5 minutes and cut into serving pieces.",
+                "11. Serve with your choice of dipping sauce.",
+            ]),
     ]
 
     func addRecipe(_ recipe: Recipe) {

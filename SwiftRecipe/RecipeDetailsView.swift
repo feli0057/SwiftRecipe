@@ -72,8 +72,24 @@ struct RecipeDetailsView: View {
                         }
                     }
                     .padding(.horizontal, 16)
-                } else if selectedTab == "Instructions" {}
+                } else if selectedTab == "Instructions" {
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("Instructions")
+                            .font(.title2)
+                            .fontWeight(.bold)
 
+                        VStack {
+                            ForEach(recipe.instructions, id: \.self) { instruction in
+                                HStack(alignment: .center, spacing: 16) {
+                                    Text("\(instruction)")
+                                        .padding(.vertical, 8)
+                                    Spacer()
+                                }
+                            }
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                }
                 Spacer()
             }
             .navigationTitle(recipe.name)
@@ -91,5 +107,13 @@ struct RecipeDetailsView: View {
         servings: "2 to 4",
         cookTime: "1.5 hours",
         ingredients: ["asfdg", "asfaf", "asfag"],
-        instructions: ""))
+        instructions: [
+            "1. In a large pot, combine pig face, vinegagh water to completely cover pork.",
+            "2. Bring to a boil, skimmingiquid.",
+            "3. Over a hot grill, gr for about 4 to 5 minutes or until nicely charred.",
+            "4. Remove from heat, allow to cool to the touch, the finely chop the meat.",
+            "5. In a large bowl, and liver spread and gently stir to combine.",
+            "6. Season with salt and pepper to taste.",
+            "7. Transfer to a hot sizzling plate, crack an egg on top, and serve.",
+        ]))
 }
