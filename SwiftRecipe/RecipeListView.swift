@@ -7,45 +7,26 @@
 
 import SwiftUI
 
-struct Recipe: Identifiable, Hashable {
-    let id = UUID()
-    let name: String
-    let description: String
-    let image: String
-    let logo: String
-}
-
 struct RecipeListView: View {
-    let recipes: [Recipe] = [
-        Recipe(
-            name: "Sizzling Pork Sisig",
-            description: "Sour, spicy, and sizzling chopped pork. A Filipino classic, perfect with drinks.",
-            image: "sisig",
-            logo: "sisig-logo"),
-        
-        Recipe(
-            name: "Lechon Kawali",
-            description: "Crucnhy, juicy, deep-fried pork belly dipped in spicy vinegar or liver sauce.",
-            image: "lechonkawali",
-            logo: "lechonkawali-logo"),
-    ]
+    @State private var recipes = RecipeList()
 
     var body: some View {
         NavigationStack {
-            List(recipes, id: \.self) { recipe in
-                NavigationLink(value: recipe) {
-                    RecipeListCellView(recipe: recipe)
+            List {
+                ForEach(recipes.AllRecipes) { recipe in
+                    NavigationLink(value: recipe) {
+                        RecipeListCellView(recipe: recipe)
+                    }
                 }
             }
             .navigationTitle("Recipes")
         }
-        
     }
 }
 
 struct RecipeListCellView: View {
     let recipe: Recipe
-    
+
     var body: some View {
         HStack {
             Image(recipe.logo)
@@ -53,7 +34,7 @@ struct RecipeListCellView: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 60, height: 60)
                 .clipShape(.circle)
-            
+
             VStack(alignment: .leading) {
                 Text(recipe.name)
                     .font(.title3)
@@ -65,7 +46,6 @@ struct RecipeListCellView: View {
 
             Spacer()
         }
-        
     }
 }
 
