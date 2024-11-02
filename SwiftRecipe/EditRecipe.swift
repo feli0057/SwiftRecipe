@@ -14,8 +14,6 @@ struct EditRecipe: View {
     
     @State private var name: String = ""
     @State private var description: String = ""
-    @State private var image: String = ""
-    @State private var logo: String = ""
     @State private var overview: String = ""
     @State private var servings: String = ""
     @State private var cookTime: String = ""
@@ -30,8 +28,6 @@ struct EditRecipe: View {
         
         _name = State(initialValue: recipe.name)
         _description = State(initialValue: recipe.description)
-        _image = State(initialValue: recipe.image)
-        _logo = State(initialValue: recipe.logo)
         _overview = State(initialValue: recipe.overview)
         _servings = State(initialValue: recipe.servings)
         _cookTime = State(initialValue: recipe.cookTime)
@@ -45,32 +41,32 @@ struct EditRecipe: View {
                 Section(header: Text("Recipe Name")) {
                     TextField("Name", text: $name)
                 }
-                
+
                 Section(header: Text("Description")) {
                     TextField("Briefly describe your dish", text: $description, axis: .vertical)
                 }
-                
+
                 Section(header: Text("Overview")) {
-                    TextField("Write a detailed introduction to your dish", text: $overview, axis: .vertical)
+                    TextField("Write a detailed introduction", text: $overview, axis: .vertical)
                 }
-                
+
                 Section(header: Text("Servings")) {
                     TextField("Example: 2 to 4", text: $servings)
                 }
-                
+
                 Section(header: Text("Cook Time")) {
                     TextField("Example: 3 hours", text: $cookTime)
                 }
-                
+
                 Section(header: Text("Ingredients")) {
-                    VStack(alignment: .leading, spacing: 12) {
+                    VStack(alignment: .leading) {
                         List {
                             ForEach(ingredients, id: \.self) { ingredient in
                                 Text(ingredient)
                             }
                             .onDelete(perform: deleteIngredient)
                         }
-                                            
+                                
                         HStack {
                             TextField("Add an ingredient", text: $newIngredient, axis: .vertical)
                             Button(action: addIngredient) {
@@ -81,18 +77,18 @@ struct EditRecipe: View {
                         }
                     }
                 }
-                
+                        
                 Section(header: Text("Instructions")) {
-                    VStack(alignment: .leading, spacing: 12) {
+                    VStack(alignment: .leading) {
                         List {
                             ForEach(instructions, id: \.self) { instruction in
                                 Text(instruction)
                             }
-                            .onDelete(perform: deleteIstruction)
+                            .onDelete(perform: deleteInstruction)
                         }
-                                            
+                                
                         HStack {
-                            TextField("Add steps", text: $newInstruction, axis: .vertical)
+                            TextField("Add step", text: $newInstruction, axis: .vertical)
                             Button(action: addInstruction) {
                                 Image(systemName: "plus.circle.fill")
                                     .resizable()
@@ -102,7 +98,7 @@ struct EditRecipe: View {
                     }
                 }
                 
-                Button("Save Changes") {
+                Button("Save Edits") {
                     saveEdits()
                 }
             }
@@ -115,19 +111,19 @@ struct EditRecipe: View {
             newIngredient = ""
         }
     }
-    
+            
     private func deleteIngredient(at offsets: IndexSet) {
         ingredients.remove(atOffsets: offsets)
     }
-    
+            
     private func addInstruction() {
         if !newInstruction.isEmpty {
             instructions.append(newInstruction)
             newInstruction = ""
         }
     }
-    
-    private func deleteIstruction(at offsets: IndexSet) {
+            
+    private func deleteInstruction(at offsets: IndexSet) {
         instructions.remove(atOffsets: offsets)
     }
     

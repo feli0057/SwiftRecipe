@@ -33,7 +33,7 @@ struct AddRecipe: View {
                 }
                 
                 Section(header: Text("Overview")) {
-                    TextField("Write a detailed introduction to your dish", text: $overview, axis: .vertical)
+                    TextField("Write a detailed introduction about your dish", text: $overview, axis: .vertical)
                 }
                 
                 Section(header: Text("Servings")) {
@@ -83,7 +83,6 @@ struct AddRecipe: View {
                         }
                     }
                 }
-                
                 Button("Save Recipe") {
                     saveRecipe()
                 }
@@ -124,6 +123,7 @@ struct AddRecipe: View {
             cookTime: cookTime,
             ingredients: ingredients,
             instructions: instructions)
+        
         recipeList.addRecipe(newRecipe)
         presentationMode.wrappedValue.dismiss()
     }

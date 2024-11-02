@@ -9,15 +9,15 @@ import Foundation
 
 struct Recipe: Identifiable, Hashable {
     var id = UUID()
-    let name: String
-    let description: String
-    let image: String
-    let logo: String
-    let overview: String
-    let servings: String
-    let cookTime: String
-    let ingredients: [String]
-    let instructions: [String]
+    var name: String
+    var description: String
+    var image: String
+    var logo: String
+    var overview: String
+    var servings: String
+    var cookTime: String
+    var ingredients: [String]
+    var instructions: [String]
 
     init(id: UUID = UUID(), name: String, description: String, image: String, logo: String, overview: String, servings: String, cookTime: String, ingredients: [String], instructions: [String]) {
         self.id = id

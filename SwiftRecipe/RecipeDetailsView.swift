@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct RecipeDetailsView: View {
+    @ObservedObject var recipeList: RecipeList
     let recipe: Recipe
     @State private var selectedTab = "Overview"
     @State private var showEditRecipe = false
-    var recipeList: RecipeList
 
     var body: some View {
         VStack {
@@ -95,19 +95,22 @@ struct RecipeDetailsView: View {
                 Spacer()
             }
             .navigationTitle(recipe.name)
-            
+
             Button("Edit") {
                 showEditRecipe.toggle()
             }
             .sheet(isPresented: $showEditRecipe) {
-                EditRecipe(recipeList: recipeList, recipe: recipe)
+                EditRecipe(
+                    recipeList: recipeList,
+                    recipe: recipe
+                )
             }
         }
     }
 }
 
 #Preview {
-    RecipeDetailsView(recipe: Recipe(
+    RecipeDetailsView(recipeList: RecipeList(), recipe: Recipe(
         name: "Sizzling Pork Sisig",
         description: "Sour, spicy, and sizzling chopped pork. A Filipino classic, perfect with drinks.",
         image: "sisig",
@@ -124,5 +127,6 @@ struct RecipeDetailsView: View {
             "5. In a large bowl, and liver spread and gently stir to combine.",
             "6. Season with salt and pepper to taste.",
             "7. Transfer to a hot sizzling plate, crack an egg on top, and serve.",
-        ]), recipeList: RecipeList())
+        ]
+    ))
 }
