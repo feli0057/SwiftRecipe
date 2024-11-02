@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct RecipeListView: View {
-    @State private var recipes = RecipeList()
+    @StateObject private var recipes = RecipeList()
+    @State private var showAddRecipeView = false
 
     var body: some View {
-        NavigationStack {
+        NavigationStack() {
             List {
                 ForEach(recipes.AllRecipes) { recipe in
                     NavigationLink(value: recipe) {
@@ -22,6 +23,13 @@ struct RecipeListView: View {
             .navigationTitle("Recipes")
             .navigationDestination(for: Recipe.self) { recipe in
                 RecipeDetailsView(recipe: recipe)
+            }
+            
+            Button("Add Recipe") {
+                showAddRecipeView.toggle()
+            }
+            .sheet(isPresented: $showAddRecipeView) {
+                AddRecipe(recipeList: recipes)
             }
         }
     }
