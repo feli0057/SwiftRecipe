@@ -29,12 +29,11 @@ struct AddRecipe: View {
                 }
                 
                 Section(header: Text("Description")) {
-                    TextField("Briefly describe your dish", text: $description)
+                    TextField("Briefly describe your dish", text: $description, axis: .vertical)
                 }
                 
                 Section(header: Text("Overview")) {
-                    TextField("Write a detailed introduction to your dish", text: $overview)
-                        .frame(height: 100)
+                    TextField("Write a detailed introduction to your dish", text: $overview, axis: .vertical)
                 }
                 
                 Section(header: Text("Servings")) {
@@ -46,13 +45,16 @@ struct AddRecipe: View {
                 }
                 
                 Section(header: Text("Ingredients")) {
-                    VStack(alignment: .leading) {
-                        ForEach(ingredients, id: \.self) { ingredient in
-                            Text(ingredient)
+                    VStack(alignment: .leading, spacing: 12) {
+                        List {
+                            ForEach(ingredients, id: \.self) { ingredient in
+                                Text(ingredient)
+                            }
+                            .onDelete(perform: deleteIngredient)
                         }
                                             
                         HStack {
-                            TextField("Add an ingredient", text: $newIngredient)
+                            TextField("Add an ingredient", text: $newIngredient, axis: .vertical)
                             Button(action: addIngredient) {
                                 Image(systemName: "plus.circle.fill")
                                     .resizable()
@@ -63,13 +65,16 @@ struct AddRecipe: View {
                 }
                 
                 Section(header: Text("Instructions")) {
-                    VStack(alignment: .leading) {
-                        ForEach(instructions, id: \.self) { instruction in
-                            Text(instruction)
+                    VStack(alignment: .leading, spacing: 12) {
+                        List {
+                            ForEach(instructions, id: \.self) { instruction in
+                                Text(instruction)
+                            }
+                            .onDelete(perform: deleteIstruction)
                         }
                                             
                         HStack {
-                            TextField("Add steps", text: $newInstruction)
+                            TextField("Add steps", text: $newInstruction, axis: .vertical)
                             Button(action: addInstruction) {
                                 Image(systemName: "plus.circle.fill")
                                     .resizable()
@@ -82,7 +87,6 @@ struct AddRecipe: View {
                 Button("Save Recipe") {
                     saveRecipe()
                 }
-                
             }
         }
     }
@@ -94,11 +98,19 @@ struct AddRecipe: View {
         }
     }
     
+    private func deleteIngredient(at offsets: IndexSet) {
+        ingredients.remove(atOffsets: offsets)
+    }
+    
     private func addInstruction() {
         if !newInstruction.isEmpty {
             instructions.append(newInstruction)
             newInstruction = ""
         }
+    }
+    
+    private func deleteIstruction(at offsets: IndexSet) {
+        instructions.remove(atOffsets: offsets)
     }
     
     private func saveRecipe() {
