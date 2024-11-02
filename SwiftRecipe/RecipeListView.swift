@@ -22,7 +22,7 @@ struct RecipeListView: View {
             }
             .navigationTitle("Recipes")
             .navigationDestination(for: Recipe.self) { recipe in
-                RecipeDetailsView(recipe: recipe)
+                RecipeDetailsView(recipe: recipe, recipeList: recipes)
             }
             
             Button("Add Recipe") {

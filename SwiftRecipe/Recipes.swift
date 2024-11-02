@@ -109,7 +109,8 @@ class RecipeList: ObservableObject {
     }
 
     func editRecipe(_ recipe: Recipe) {
-        AllRecipes.removeAll(where: { $0.name == recipe.name })
-        AllRecipes.append(recipe)
+        if let index = AllRecipes.firstIndex(where: { $0.id == recipe.id }) {
+            AllRecipes[index] = recipe
+        }
     }
 }
